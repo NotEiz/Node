@@ -32,8 +32,12 @@ const posts = [
 // find all users
 app.get("/posts", (req, res) => {
   const { title } = req.query;
-
-  res.send(posts);
+  const foundTitle = posts.find((post) => post.title === title);
+  if (foundTitle) {
+    res.send(foundTitle);
+  } else {
+    res.send(posts);
+  }
 });
 
 app.get("/posts/:id", (req, res) => {
